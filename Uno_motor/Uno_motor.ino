@@ -8,7 +8,7 @@ const int PWMA = 11;            //speed control pin on the motor driver for the 
 
 //VARIABLES
 int motorSpeed = 0;       //starting speed for the motor
-int photoresistor = 0;              //this variable will hold a value based on the position of the knob
+int photoresistor = 0;              //this variable will hold a value of the photoresistor
 int threshold = 500;                //if the photoresistor reading is below this value the motor will turn on
 
 void setup() {
