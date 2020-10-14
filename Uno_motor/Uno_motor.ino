@@ -30,18 +30,18 @@ void loop() {
 
 
     //drive bot to move forward
-    digitalWrite(AIN1, LOW);                          //set pin 1 to low
-    digitalWrite(AIN2, HIGH);                         //set pin 2 to high
-    analogWrite(PWMA, 255);               //now that the motor direction is set, drive it at max speed
+    digitalWrite(AIN1, LOW);              //set pin 1 to low
+    digitalWrite(AIN2, HIGH);             //set pin 2 to high
+    analogWrite(PWMA, 255);               //drive it at max speed
 
 
   } else {                           //if the value of photoresistor is less than the threshold's value, the bot will stop
     Serial.println(photoresistor);    //print the value of photoresistor in the serial monitor on the computer
 
     //stop motor
-    digitalWrite(AIN1, LOW);                          //set pin 1 to low
-    digitalWrite(AIN2, LOW);                          //set pin 2 to low
-    analogWrite(PWMA, 0);               //now that the motor direction is set, stop motor
+    digitalWrite(AIN1, LOW);            //set pin 1 to low
+    digitalWrite(AIN2, LOW);            //set pin 2 to low
+    analogWrite(PWMA, 0);               //stop the motor
   }
 
 
