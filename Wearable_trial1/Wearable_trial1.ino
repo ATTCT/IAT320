@@ -7,70 +7,47 @@
 #define THRESHOLD_RIGHT     5   // threshold for right turn
 #define THRESHOLD_LEFT     -5   // threshold for left turn
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(12, A2, NEO_GRB + NEO_KHZ800); // Declare our NeoPixel strip object:
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(12, A2, NEO_GRB + NEO_KHZ800); // Declare the NeoPixel strip object:
 
 
 void setup() {
   Serial.begin(9600); // Initialize serial.
-
   CircuitPlayground.begin(); // Initialize Circuit Playground
-
-  strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
-  strip.show();            // Turn OFF all pixels ASAP
-  strip.setBrightness(255); // Set BRIGHTNESS to about 1/5 (max = 255)
+  strip.begin();           // INITIALIZE NeoPixel strip object
+  strip.show();            // Turn OFF all pixels
+  strip.setBrightness(255); // Set brightness to 255
 }
 
 void loop() {
-
-  // check for hand up or down
-  if (CircuitPlayground.motionZ() > THRESHOLD_UP) {
-
-//    Serial.print(CircuitPlayground.motionZ());
-//    NoTurnAnimation();
+  if (CircuitPlayground.motionZ() > THRESHOLD_UP) { // check for hand up or down
 
   } else {
+    if (CircuitPlayground.motionX() > THRESHOLD_RIGHT) {  // check for right turn
 
-    // check for right turn
-    if (CircuitPlayground.motionX() > THRESHOLD_RIGHT) {
-      Serial.print(CircuitPlayground.motionX());
       rightTurnAnimation();
 
+    } else if (CircuitPlayground.motionY() < THRESHOLD_LEFT) {  // check for left turn
 
-      // check for left turn
-    } else if (CircuitPlayground.motionY() < THRESHOLD_LEFT) {
-      Serial.print(CircuitPlayground.motionY());
       leftTurnAnimation();
 
     }
   }
 }
 
-//void NoTurnAnimation() {
-//  // just to be sure, turn off all NeoPixels
-//  strip.show();
-//
-//  // turn them all off
-//  for (int i = 0; i < strip.numPixels(); i++) {
-//
-//    strip.setPixelColor(i, strip.Color(0,   0,   0));
-//    strip.show();
-//    delay(2000);
-//
-//  }
-//}
 
 void leftTurnAnimation() {
-  // just to be sure, turn off all NeoPixels
-  strip.show();
+  
+  strip.show(); // turn off all NeoPixels
 
-  for (int i = 0; i < strip.numPixels(); i++) { // For each pixel in strip...
+  for (int i = 0; i < 6; i++) { // For first 6 neopixels in strip...
     strip.setPixelColor(i, strip.Color(255,   0,   0));         //  Set pixel's color (Red)
     strip.show();                          //  Update strip to match
   }
 
   delay(200);
-  // turn them all off
-  for (int i = 0; i < strip.numPixels(); i++) {
+
+  // turn them all off one by one
+  for (int i = 0; i < 6; i++) {
 
     strip.setPixelColor(i, strip.Color(0,   0,   0));
     strip.show();
@@ -80,21 +57,19 @@ void leftTurnAnimation() {
 }
 
 void rightTurnAnimation() {
-  // just to be sure, turn off all NeoPixels
-  strip.show();
+  strip.show(); //turn off all NeoPixels
 
-  for (int i = 0; i < strip.numPixels(); i++) { // For each pixel in strip...
-    strip.setPixelColor(i, strip.Color(0,   0,   255));         //  Set pixel's color (Blue)
+  for (int j = 6; j < 12; j++) { // For 7 to 12 neopixels in strip...
+    strip.setPixelColor(j, strip.Color(0,   0,   255));         //  Set pixel's color (Blue)
     strip.show();                          //  Update strip to match
   }
 
-  // wait a little bit
   delay(200);
 
   // turn them all off
-  for (int i = 0; i < strip.numPixels(); i++) {
+  for (int j = 6; j < 12; j++) {
 
-    strip.setPixelColor(i, strip.Color(0,   0,   0));
+    strip.setPixelColor(j, strip.Color(0,   0,   0));
     strip.show();
     delay(2000);
 
