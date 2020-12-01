@@ -1,3 +1,4 @@
+
 // Demo from NewPing library was used in the creation of this code
 
 #include <NewPing.h>
@@ -30,12 +31,10 @@ void loop() {
     for (pos = pos; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
       // in steps of 1 degree
       myservo.write(pos);              // tell servo to go to position in variable 'pos'
-      // waits 15ms for the servo to reach the position
     }
     for (pos2 = pos2; pos2 >= 0; pos2 -= 1) { // goes from 0 degrees to 180 degrees
       // in steps of 1 degree
       myservo2.write(pos2);              // tell servo to go to position in variable 'pos'
-      // waits 15ms for the servo to reach the position
     }
   }
   else {
