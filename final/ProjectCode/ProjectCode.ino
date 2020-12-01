@@ -1,6 +1,4 @@
-// ---------------------------------------------------------------------------
 // Demo from NewPing library was used in the creation of this code
-// ---------------------------------------------------------------------------
 
 #include <NewPing.h>
 #include <Servo.h>
@@ -27,7 +25,6 @@ void loop() {
   Serial.print("Ping: ");
   Serial.print(sonar.ping_cm()); // Send ping, get distance in cm and print result (0 = outside set distance range)
   Serial.println("cm");
-
 
   if (sonar.ping_cm() <= 30) {
     for (pos = pos; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
